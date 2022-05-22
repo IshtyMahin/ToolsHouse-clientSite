@@ -1,13 +1,12 @@
 import React from 'react';
 import Navbar from '../Shared/Navbar';
 
-const NotFound = () => {
+const Blogs = () => {
     return (
         <div>
-            <Navbar/>
-            <h2>Not found</h2>
+            <Navbar></Navbar>
         </div>
     );
 };
 
-export default NotFound;
+export default Blogs;

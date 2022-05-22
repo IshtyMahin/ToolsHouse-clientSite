@@ -5,7 +5,7 @@ import User from './User';
 
 const AllUser = () => {
     const {
-        data: users,
+        data:users,
         isLoading,
         refetch,
       } = useQuery("users", () =>
@@ -16,6 +16,7 @@ const AllUser = () => {
           },
         }).then((res) => res.json())
       );
+      console.log(users)
       if (isLoading) {
         return <Loading></Loading>;
       }

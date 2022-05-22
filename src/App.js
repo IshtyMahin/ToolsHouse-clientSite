@@ -21,22 +21,27 @@ import Navbar from "./Pages/Shared/Navbar";
 function App() {
   return (
     <div className="App">
-      <Navbar></Navbar>
+      
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="about" element={<About />}></Route>
         <Route path="login" element={<Login />}></Route>
         <Route path="signup" element={<SignUp />}></Route>
         <Route path="dashboard" element={<Dashboard />}>
-          <Route index element={<MyOrders></MyOrders>}></Route>
+          <Route index element={<MyProfile></MyProfile>}></Route>
+          <Route path='users' element={
+            <RequireAdmin>
+              <AllUser></AllUser>
+            </RequireAdmin>
+          }></Route>
           <Route path="addProduct" element={
             <RequireAdmin>
               <AddProduct></AddProduct>
             </RequireAdmin>
           }></Route>
           <Route path="addreview" element={<AddReview></AddReview>}></Route>
-          <Route path="profile" element={<MyProfile></MyProfile>}></Route>
-          <Route path="users" element={<AllUser></AllUser>}></Route>
+          <Route path="orders" element={<MyOrders></MyOrders>}></Route>
+          
           <Route
             path="manageOrder"
             element={

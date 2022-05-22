@@ -6,6 +6,7 @@ import auth from "../../firebase.init";
 import useToken from "../../hooks/useToken";
 
 import Loading from "../Shared/Loading";
+import Navbar from "../Shared/Navbar";
 
 const Login = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
@@ -52,7 +53,9 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center p-12">
+   <> 
+      <Navbar></Navbar>
+      <div className="flex justify-center items-center p-12">
       <div className="card w-96 bg-base-100 shadow-xl">
         <div className="card-body">
           <h2 className="text-center text-2xl font-semibold text-primary">
@@ -149,6 +152,7 @@ const Login = () => {
         </div>
       </div>
     </div>
+   </>
   );
 };
 
