@@ -2,7 +2,14 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import About from './Pages/About/About';
+import AddProduct from './Pages/Dashboard/AddProduct';
+import AddReview from './Pages/Dashboard/AddReview';
+import AllUser from './Pages/Dashboard/AllUser';
 import Dashboard from './Pages/Dashboard/Dashboard';
+import ManageAllOrder from './Pages/Dashboard/ManageAllOrder';
+import ManageProduct from './Pages/Dashboard/ManageProduct';
+import MyOrders from './Pages/Dashboard/MyOrders';
+import MyProfile from './Pages/Dashboard/MyProfile';
 import ContactUs from './Pages/Home/ContactUs';
 import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
@@ -28,7 +35,13 @@ function App() {
             
           }
         >
-
+                     <Route index element={<MyOrders></MyOrders>}></Route>
+                     <Route path="addProduct" element={<AddProduct></AddProduct>}></Route>
+                     <Route path="addreview" element={<AddReview></AddReview>}></Route>
+                     <Route path="profile" element={<MyProfile></MyProfile>}></Route>
+                     <Route path="users" element={<AllUser></AllUser>}></Route>
+                     <Route path="manageOrder" element={<ManageAllOrder></ManageAllOrder>}></Route>
+                     <Route path="manageProduct" element={<ManageProduct></ManageProduct>}></Route>
 
         </Route>
 
