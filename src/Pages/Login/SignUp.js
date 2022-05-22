@@ -8,7 +8,9 @@ import {
 import { useForm } from "react-hook-form";
 import Loading from "../Shared/Loading";
 import { Link, useNavigate } from "react-router-dom";
-// import useToken from "../../hooks/useToken";
+import useToken from "../../hooks/useToken";
+
+
 const SignUp = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const {
@@ -23,7 +25,7 @@ const SignUp = () => {
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
 
-//   const [token] = useToken(user||gUser);
+  const [token] = useToken(user||gUser);
 
   const navigate = useNavigate();
 
@@ -41,10 +43,10 @@ const SignUp = () => {
     );
   }
 
-//   if (token) {
+  if (token) {
     
-//     navigate("/appointment");
-//   }
+    navigate("/");
+  }
 
   const onSubmit = async (data) => {
     await createUserWithEmailAndPassword(data.email, data.password);
@@ -54,7 +56,7 @@ const SignUp = () => {
    
   };
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center p-12">
       <div className="card w-96 bg-base-100 shadow-xl">
         <div className="card-body">
           <h2 className="text-center text-2xl font-semibold text-primary">

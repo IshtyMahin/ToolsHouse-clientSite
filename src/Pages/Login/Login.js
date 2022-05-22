@@ -1,13 +1,12 @@
-import React, { useEffect } from "react";
-import auth from "../../firebase.init";
-import {
-  useSignInWithEmailAndPassword,
-  useSignInWithGoogle,
-} from "react-firebase-hooks/auth";
+import { useEffect } from "react";
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import Loading from "../Shared/Loading";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-// import useToken from "../../hooks/useToken";
+import auth from "../../firebase.init";
+import useToken from "../../hooks/useToken";
+
+import Loading from "../Shared/Loading";
+
 const Login = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const {
@@ -19,7 +18,7 @@ const Login = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
   
-//   const [token] = useToken(user|| gUser)
+  const [token] = useToken(user|| gUser)
 
   let signInError;
   const navigate = useNavigate();
@@ -27,11 +26,11 @@ const Login = () => {
 
   let from = location.state?.from?.pathname || "/";
 
-//   useEffect(()=>{
-//     if (token) {
-//         navigate(from, { replace: true });
-//       }
-//   },[token,from,navigate])
+  useEffect(()=>{
+    if (token) {
+        navigate(from, { replace: true });
+      }
+  },[token,from,navigate])
 
   if (loading || gLoading) {
     return <Loading />;
@@ -53,7 +52,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center p-12">
       <div className="card w-96 bg-base-100 shadow-xl">
         <div className="card-body">
           <h2 className="text-center text-2xl font-semibold text-primary">

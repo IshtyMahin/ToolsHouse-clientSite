@@ -7,6 +7,7 @@ import ContactUs from './Pages/Home/ContactUs';
 import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
 import SignUp from './Pages/Login/SignUp';
+import NotFound from './Pages/NotFound/NotFound';
 import Footer from './Pages/Shared/Footer';
 import Navbar from './Pages/Shared/Navbar';
 
@@ -32,7 +33,7 @@ function App() {
         </Route>
 
         <Route path="contact" element={<ContactUs />}></Route>
-      
+        <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
       <Footer></Footer>
     </div>
