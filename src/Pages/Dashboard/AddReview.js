@@ -4,12 +4,13 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
+import Loading from '../Shared/Loading';
 
 const AddReview = () => {
     const { register, handleSubmit,reset, watch, formState: { errors } } = useForm();
     const [user, loading, error] = useAuthState(auth);
     console.log(user)
-    const onSubmit =async data =>{
+    const onSubmit =async (data) =>{
         const review ={
             rating: data.rating,
             description: data.description,
@@ -28,14 +29,17 @@ const AddReview = () => {
             .then(inserted=>{
                 console.log(inserted)
                    if(inserted.insertedId){
-                       toast.success('Doctor added successfully')
+                       toast.success('Review added successfully')
                        reset()
                    }
                    else{
-                      toast.error('Failed to add the doctor')
+                      toast.error('Failed to add the Review')
                    }
             })
     } ;
+    if(loading){
+        return <Loading></Loading>
+    }
     return (
        
         <form className='mx-16' onSubmit={handleSubmit(onSubmit)}>
@@ -43,6 +47,7 @@ const AddReview = () => {
           <label className="label">
             <span className="label-text">Rating</span>
           </label>
+          
           <input
             type="number"
             placeholder="Your Rating"
@@ -50,16 +55,32 @@ const AddReview = () => {
             {...register("rating",{
               required: {
                 value:true,
-                min:1,
-                max:5,
+                
                 message: "Number is required & given number in 1 to 5",
               },
-
+              max: {
+                value: 5,
+                message: 'Number is greater than 5'
+              },
+              min: {
+                value: 1,
+                message: 'Number is less than 1'
+              }
             })}
           />
          
           <label className="label">
             {errors.rating?.type === "required" && (
+              <span className="label-text-alt text-red-500">
+                {errors.rating.message}
+              </span>
+            )}
+            {errors.rating?.type === "max" && (
+              <span className="label-text-alt text-red-500">
+                {errors.rating.message}
+              </span>
+            )}
+            {errors.rating?.type === "min" && (
               <span className="label-text-alt text-red-500">
                 {errors.rating.message}
               </span>

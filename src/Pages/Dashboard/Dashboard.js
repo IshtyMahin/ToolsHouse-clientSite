@@ -11,7 +11,7 @@ const Dashboard = () => {
   console.log(admin);
   return (
     <>
-     <Navbar><div className="navbar-end ">
+     <Navbar><div className="pl-32 lg:pl-4">
         <label tabIndex="1" for="dashboard-sidebar"className="btn btn-ghost lg:hidden">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -33,8 +33,8 @@ const Dashboard = () => {
     <div className="drawer drawer-mobile">
       <input id="dashboard-sidebar" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
-        <h2 className="text-2xl font-bold text-purple-500">
-          Welcome to your Dashboard
+        <h2 className="text-2xl font-bold text-red-500">
+          Your Profile
         </h2>
         <Outlet></Outlet>
       </div>

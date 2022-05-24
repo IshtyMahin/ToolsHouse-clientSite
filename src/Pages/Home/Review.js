@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "react-query";
 import Loading from "../Shared/Loading";
-
+import OneReview from "./OneReview";
 
 
 const Review = () => {
@@ -20,10 +20,6 @@ const Review = () => {
     return <Loading></Loading>;
   }
   return (
-    <>
-      <h2> Review</h2>
-      
-    </>
   );
 };
 
