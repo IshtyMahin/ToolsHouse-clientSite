@@ -50,6 +50,9 @@ const MyProfile = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        if(data.upserted){
+            toast('Your Information is update');
+        }
         reset()
       });
   };
@@ -59,6 +62,7 @@ const MyProfile = () => {
   }
   return (
     <div>
+        <h2 className="text-3xl text-red-400">Your Profile</h2>
       <div>
         <div class="avatar mt-12">
           <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
@@ -66,7 +70,7 @@ const MyProfile = () => {
           </div>
         </div>
         <div className="mt-12">
-          <label for="info-model" class="btn modal-button">
+          <label htmlFor="info-model" class="btn modal-button">
             See your personal information ...
           </label>
 
@@ -74,7 +78,7 @@ const MyProfile = () => {
           <div class="modal">
             <div class="modal-box relative">
               <label
-                for="info-model"
+                htmlFor="info-model"
                 class="btn btn-sm btn-circle absolute right-2 top-2"
               >
                 ✕
@@ -96,7 +100,7 @@ const MyProfile = () => {
               </p>
               <p class="py-2">
                 
-                Location: {oneuser.userInfo.location?oneuser.userInfo.location: 'Not avaiable'}
+                Location: {oneuser?.userInfo?.location?oneuser?.userInfo?.location: 'Not avaiable'}
                 
               </p>
               <p class="py-2">
