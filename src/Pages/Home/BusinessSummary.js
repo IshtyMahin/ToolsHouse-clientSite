@@ -4,7 +4,7 @@ import { GiTakeMyMoney } from "react-icons/gi";
 import { FaTools } from "react-icons/fa";
 const BusinessSummary = () => {
   return (
-    <div class="stats stats-vertical lg:stats-horizontal shadow gap-3">
+    <div class="stats stats-vertical lg:stats-horizontal shadow gap-3 my-12">
       <div class="stat p-12 bg-red-200">
         <div class="stat-figure text-secondary">
           <svg

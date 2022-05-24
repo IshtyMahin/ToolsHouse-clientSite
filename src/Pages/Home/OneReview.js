@@ -1,16 +1,19 @@
 import React from 'react';
-
-const OneReview = () => {
+import { AiFillStar } from "react-icons/ai";
+const OneReview = ({review}) => {
     return (
-        <div class="hero min-h-screen bg-base-200">
-        <div class="hero-content text-center">
-          <div class="max-w-md">
-            <h1 class="text-5xl font-bold">Hello there</h1>
-            <p class="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-            <button class="btn btn-primary">Get Started</button>
-          </div>
-        </div>
-      </div>
+        <div class="card  bg-base-100 shadow-xl">
+  <div class="avatar mx-auto mt-6">
+  <div class="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+    <img src="https://api.lorem.space/image/face?hash=3174" alt=''/>
+  </div>
+</div>
+  <div class="card-body items-center text-center">
+    <h2 class="card-title">{review.rating}<AiFillStar/> </h2>
+    <p>{review.description}</p>
+    
+  </div>
+</div>
     );
 };
 

@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import "./App.css";
 import About from "./Pages/About/About";
+import ContactUs from "./Pages/ContactUs/ContactUs";
 import AddProduct from "./Pages/Dashboard/AddProduct";
 import AddReview from "./Pages/Dashboard/AddReview";
 import AllUser from "./Pages/Dashboard/AllUser";
@@ -12,14 +13,14 @@ import ManageAllOrder from "./Pages/Dashboard/ManageAllOrder";
 import ManageProduct from "./Pages/Dashboard/ManageProduct";
 import MyOrders from "./Pages/Dashboard/MyOrders";
 import MyProfile from "./Pages/Dashboard/MyProfile";
-import ContactUs from "./Pages/Home/ContactUs";
+
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
 import RequireAdmin from "./Pages/Login/RequireAdmin";
 import SignUp from "./Pages/Login/SignUp";
 import NotFound from "./Pages/NotFound/NotFound";
 import Footer from "./Pages/Shared/Footer";
-import Navbar from "./Pages/Shared/Navbar";
+
 
 function App() {
   return (

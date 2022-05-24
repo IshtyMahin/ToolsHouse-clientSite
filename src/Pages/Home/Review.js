@@ -19,7 +19,15 @@ const Review = () => {
   if (isLoading) {
     return <Loading></Loading>;
   }
-  return (
+  return (<div className="grid grid-cols-1 lg:grid-cols-4 gap-3 mx-12">
+    {
+      reviews.slice(0,6).map(review=> <OneReview 
+         review={review}
+         key={review._id}
+      ></OneReview>)
+    }
+
+  </div>
   );
 };
 
