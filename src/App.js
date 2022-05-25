@@ -15,10 +15,12 @@ import MyOrders from "./Pages/Dashboard/MyOrders";
 import MyProfile from "./Pages/Dashboard/MyProfile";
 
 import Home from "./Pages/Home/Home";
-import Login from "./Pages/Login/Login";
 import RequireAdmin from "./Pages/Login/RequireAdmin";
+import Login from "./Pages/Login/Login";
+import RequireAuth from "./Pages/Login/RequireAuth";
 import SignUp from "./Pages/Login/SignUp";
 import NotFound from "./Pages/NotFound/NotFound";
+import Purchase from "./Pages/Purchase/Purchase";
 import Footer from "./Pages/Shared/Footer";
 
 
@@ -31,6 +33,12 @@ function App() {
         <Route path="about" element={<About />}></Route>
         <Route path="login" element={<Login />}></Route>
         <Route path="signup" element={<SignUp />}></Route>
+        <Route path="product/:id" element={
+          <RequireAuth>
+            <Purchase></Purchase>
+          </RequireAuth>
+        }></Route>
+
         <Route path="dashboard" element={<Dashboard />}>
           <Route index element={<MyProfile></MyProfile>}></Route>
           <Route path='users' element={

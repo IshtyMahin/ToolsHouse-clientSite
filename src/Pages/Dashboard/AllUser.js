@@ -1,23 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import Loading from "../Shared/Loading";
 import User from "./User";
 
 const AllUser = () => {
-  
-  const {
-    data:users,
-    isLoading,
-    refetch,
-  } = useQuery("users", () =>
-    fetch("http://localhost:5000/user")
-      .then((res) => res.json())
-      
-  );
+  const [users,setUsers] = useState([]);
   console.log(users);
-  if (isLoading) {
-    return <Loading></Loading>;
-  }
+  const url = `http://localhost:5000/user`;
+  
+  useEffect(() => {
+    fetch(url, {
+        method: "GET",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+        .then((res) => res.json())
+        .then(data => setUsers(data))
+ 
+  }, [users]);
 
   return (
     <div className="m-5">
@@ -35,6 +37,7 @@ const AllUser = () => {
           <tbody>
             {
               users?.map((user,index)=><User
+                 key={index}
                  user={user}
                  index={index}
               ></User>)

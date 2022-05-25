@@ -72,6 +72,7 @@ const AddProduct = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="grid grid-cols-1 gap-2 justify-items-center"
       >
+        
         <input
           type="text"
           placeholder="Product Name"
