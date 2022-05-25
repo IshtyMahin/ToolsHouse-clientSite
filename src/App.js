@@ -22,6 +22,7 @@ import SignUp from "./Pages/Login/SignUp";
 import NotFound from "./Pages/NotFound/NotFound";
 import Purchase from "./Pages/Purchase/Purchase";
 import Footer from "./Pages/Shared/Footer";
+import MyPortfolio from "./Pages/MyPortfolio/MyPortfolio";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="about" element={<About />}></Route>
+        <Route path="portfolio" element={<MyPortfolio />}></Route>
         <Route path="login" element={<Login />}></Route>
         <Route path="signup" element={<SignUp />}></Route>
         <Route path="product/:id" element={

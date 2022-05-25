@@ -1,17 +1,25 @@
 import { signOut } from "firebase/auth";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link, useParams} from "react-router-dom";
+import { Link, Navigate, useLocation,  useParams} from "react-router-dom";
 import auth from "../../firebase.init";
 
 const Navbar = (props) => {
   const [user] = useAuthState(auth);
+  const location = useLocation();
 const path = useParams();
 console.log(path)
   const logout = () => {
+    
     signOut(auth);
+    if(signOut){
+      
+        return <Navigate to="/" state={{from:location}} replace></Navigate>
+
+    }
     
   };
+
   const menuItem = (
     <>
       <li>
@@ -76,8 +84,8 @@ console.log(path)
             {menuItem}
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost normal-case text-xl">
-          Manufacturer  Website
+        <Link to="/" className="btn btn-ghost normal-case text-2xl text-red-400">
+          Tools House
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
