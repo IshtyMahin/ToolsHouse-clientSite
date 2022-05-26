@@ -18,7 +18,7 @@ const Purchase = () => {
   } = useForm();
   const [user, loading, error] = useAuthState(auth);
   const { id } = useParams();
-  const url = `http://localhost:5000/product/${id}`;
+  const url = `https://young-wave-22909.herokuapp.com/product/${id}`;
   const { data: product, isLoading } = useQuery(["product", id], () =>
     fetch(url, {
       method: "GET",
@@ -27,39 +27,39 @@ const Purchase = () => {
       },
     }).then((res) => res.json())
   );
-  
 
-  const onSubmit =async (data) =>{
-    const order= {
-        customerName: user?.displayName,
-        email: user?.email,
-        productName: product?.productName,
-        price: product?.price,
-        address: data.adress,
-        phone: data.phone,
-        quantity: data.quantity,
-      };
+  const onSubmit = async (data) => {
+    const order = {
+      customerName: user?.displayName,
+      email: user?.email,
+      productName: product?.productName,
+      price: product?.price * data.quantity,
+      address: data.adress,
+      phone: data.phone,
+      quantity: data.quantity,
+    };
 
-    fetch('http://localhost:5000/order',{
-            method: 'POST',
-            headers:{
-                'content-type':'application/json',
-                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-            },
-            body:JSON.stringify(order)
-        })
-        .then(res=> res.json())
-        .then(inserted=>{
-            console.log(inserted)
-               if(inserted.insertedId){
-                   toast.success( "Order added successfully , For payment go to My order page")
-                   reset()
-               }
-               else{
-                  toast.error('Failed to add the Review')
-               }
-        })
-} ;
+    fetch("https://young-wave-22909.herokuapp.com/order", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: JSON.stringify(order),
+    })
+      .then((res) => res.json())
+      .then((inserted) => {
+        console.log(inserted);
+        if (inserted.insertedId) {
+          toast.success(
+            "Order added successfully , For payment go to My order page"
+          );
+          reset();
+        } else {
+          toast.error("Failed to add the Review");
+        }
+      });
+  };
   if (isLoading || loading) {
     <Loading></Loading>;
   }
@@ -69,8 +69,8 @@ const Purchase = () => {
       <Navbar></Navbar>
       <div className="mx-8 lg:mx-20">
         <div>
-          <div class="card  bg-base-100 shadow-xl">
-            <div class="card-body h-75 items-center text-center">
+          <div className="card  bg-base-100 shadow-xl">
+            <div className="card-body h-75 items-center text-center">
               <div className="w-50 h-50">
                 <img className="" src={product?.img} alt="" />
               </div>
@@ -98,7 +98,7 @@ const Purchase = () => {
             </div>
           </div>
         </div>
-        <div class="divider"></div>
+        <div className="divider"></div>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="grid grid-cols-1 gap-2 justify-items-center "

@@ -3,22 +3,27 @@ import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, Navigate, useLocation,  useParams} from "react-router-dom";
 import auth from "../../firebase.init";
+import Loading from "./Loading";
 
 const Navbar = (props) => {
-  const [user] = useAuthState(auth);
+  const [user,loading] = useAuthState(auth);
+  
   const location = useLocation();
 const path = useParams();
 console.log(path)
   const logout = () => {
     
     signOut(auth);
-    if(signOut){
-      
-        return <Navigate to="/" state={{from:location}} replace></Navigate>
+    localStorage.removeItem('accessToken');
+    if(!user){
+        
+      return <Navigate to="/login" state={{from:location}} replace></Navigate>
 
-    }
-    
+  }
   };
+  if(loading){
+    return <Loading></Loading>
+  }
 
   const menuItem = (
     <>

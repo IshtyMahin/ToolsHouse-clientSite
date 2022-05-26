@@ -5,7 +5,9 @@ const NotFound = () => {
     return (
         <div>
             <Navbar/>
-            <h2>Not found</h2>
+            <div className='flex justify-center'>
+                <img src="https://i.ibb.co/z8rJQdv/not-found-img.jpg" alt="" />
+            </div>
         </div>
     );
 };

@@ -1,15 +1,15 @@
 import React from "react";
 import { toast } from "react-toastify";
 
-const DeleteConfirmModal = ({
-  deletingProduct,
+const DeleteConfirmModalForOrder = ({
+  deletingOrder,
   refetch,
-  setDeletingProduct,
+  setDeletingOrder,
 }) => {
-  const { productName, _id } = deletingProduct;
-  console.log(deletingProduct);
+  const { productName, _id } = deletingOrder;
+  console.log(deletingOrder);
   const handleDelete = () => {
-    const url = `https://young-wave-22909.herokuapp.com/product/${_id}`;
+    const url = `https://young-wave-22909.herokuapp.com/order/${_id}`;
     console.log(url);
     fetch(url, {
       method: "DELETE",
@@ -22,7 +22,7 @@ const DeleteConfirmModal = ({
         console.log(data);
         if (data.deletedCount) {
           toast.success(`Product: ${productName} is deleted.`);
-          setDeletingProduct(null);
+          setDeletingOrder(null);
           refetch();
         }
       });
@@ -57,4 +57,4 @@ const DeleteConfirmModal = ({
   );
 };
 
-export default DeleteConfirmModal;
+export default DeleteConfirmModalForOrder;

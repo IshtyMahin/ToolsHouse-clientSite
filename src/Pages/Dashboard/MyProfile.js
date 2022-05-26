@@ -8,7 +8,6 @@ import auth from "../../firebase.init";
 import Loading from "../Shared/Loading";
 
 const MyProfile = () => {
- 
   const {
     register,
     handleSubmit,
@@ -17,13 +16,15 @@ const MyProfile = () => {
     formState: { errors },
   } = useForm();
   const [user, loading, error] = useAuthState(auth);
+  console.log(user);
   const {
-    data:oneuser,
+    data: oneuser,
     isLoading,
     refetch,
   } = useQuery("users", () =>
-    fetch(`http://localhost:5000/user/${user.email}`).then((res) => res.json())
-    
+    fetch(`https://young-wave-22909.herokuapp.com/user/${user.email}`).then(
+      (res) => res.json()
+    )
   );
 
   const onSubmit = async (data) => {
@@ -31,13 +32,13 @@ const MyProfile = () => {
       email: user.email,
       name: user.displayName,
       location: data.location,
-      linkedIn:data.linkedIn,
+      linkedIn: data.linkedIn,
       education: data.education,
 
       phone: data.phone,
     };
     console.log(userInfo);
-    const url = `http://localhost:5000/user/${user.email}`;
+    const url = `https://young-wave-22909.herokuapp.com/user/${user.email}`;
     console.log(url);
     fetch(url, {
       method: "PUT",
@@ -50,10 +51,10 @@ const MyProfile = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if(data.upserted){
-            toast('Your Information is update');
+        if (data.upserted) {
+          toast("Your Information is update");
         }
-        reset()
+        reset();
       });
   };
 
@@ -62,57 +63,55 @@ const MyProfile = () => {
   }
   return (
     <div>
-        <h2 className="text-3xl text-red-400">Your Profile</h2>
+      <h2 className="text-3xl text-red-400">Your Profile</h2>
       <div>
-        <div class="avatar mt-12">
-          <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+        <div className="avatar mt-12">
+          <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
             <img src={user.photoURL} alt="your gmail account img" />
           </div>
         </div>
         <div className="mt-12">
-          <label htmlFor="info-model" class="btn modal-button">
+          <label htmlFor="info-model" className="btn modal-button">
             See your personal information ...
           </label>
 
-          <input type="checkbox" id="info-model" class="modal-toggle" />
-          <div class="modal">
-            <div class="modal-box relative">
+          <input type="checkbox" id="info-model" className="modal-toggle" />
+          <div className="modal">
+            <div className="modal-box relative">
               <label
                 htmlFor="info-model"
-                class="btn btn-sm btn-circle absolute right-2 top-2"
+                className="btn btn-sm btn-circle absolute right-2 top-2"
               >
                 ✕
               </label>
-              <h3 class="text-lg font-bold">
-                 My Information
-              </h3>
-              <p class="py-2">
-              Name : {oneuser?.userInfo?.name}
-                
+              <h3 className="text-lg font-bold">My Information</h3>
+              <p className="py-2">Name : {user.displayName}</p>
+              <p className="py-2">Email : {user.email}</p>
+              <p className="py-2">
+                Education:{" "}
+                {oneuser?.userInfo?.education
+                  ? oneuser?.userInfo?.education
+                  : "Not avaiable"}
               </p>
-              <p class="py-2">
-                
-              Email : {oneuser?.email}
+              <p className="py-2">
+                Location:{" "}
+                {oneuser?.userInfo?.location
+                  ? oneuser?.userInfo?.location
+                  : "Not avaiable"}
               </p>
-              <p class="py-2">
-                
-               Education: {oneuser?.userInfo?.education?oneuser?.userInfo?.education: 'Not avaiable'}
-              </p>
-              <p class="py-2">
-                
-                Location: {oneuser?.userInfo?.location?oneuser?.userInfo?.location: 'Not avaiable'}
-                
-              </p>
-              <p class="py-2">
-                
-                Phone: {oneuser?.userInfo?.phone?oneuser?.userInfo?.phone: 'Not avaiable'}
-                
+              <p className="py-2">
+                Phone:{" "}
+                {oneuser?.userInfo?.phone
+                  ? oneuser?.userInfo?.phone
+                  : "Not avaiable"}
               </p>
             </div>
           </div>
         </div>
       </div>
-      <h2 className="text-3xl mt-12 font-semibold">Update or give your information. </h2>
+      <h2 className="text-3xl mt-12 font-semibold">
+        Update or give your information.{" "}
+      </h2>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="grid grid-cols-1 gap-3 justify-items-center m-12"

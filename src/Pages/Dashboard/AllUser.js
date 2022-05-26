@@ -4,21 +4,20 @@ import Loading from "../Shared/Loading";
 import User from "./User";
 
 const AllUser = () => {
-  const [users,setUsers] = useState([]);
+  const [users, setUsers] = useState([]);
   console.log(users);
-  const url = `http://localhost:5000/user`;
-  
+  const url = `https://young-wave-22909.herokuapp.com/user`;
+
   useEffect(() => {
     fetch(url, {
-        method: "GET",
-        headers: {
-          "content-type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      })
-        .then((res) => res.json())
-        .then(data => setUsers(data))
- 
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setUsers(data));
   }, [users]);
 
   return (
@@ -35,13 +34,9 @@ const AllUser = () => {
             </tr>
           </thead>
           <tbody>
-            {
-              users?.map((user,index)=><User
-                 key={index}
-                 user={user}
-                 index={index}
-              ></User>)
-            }
+            {users?.map((user, index) => (
+              <User key={index} user={user} index={index}></User>
+            ))}
           </tbody>
         </table>
       </div>

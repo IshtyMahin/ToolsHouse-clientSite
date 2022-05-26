@@ -41,7 +41,7 @@ const AddProduct = () => {
             description: data.description,
             img: img,
           };
-          fetch("http://localhost:5000/product", {
+          fetch("https://young-wave-22909.herokuapp.com/product", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -72,7 +72,6 @@ const AddProduct = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="grid grid-cols-1 gap-2 justify-items-center"
       >
-        
         <input
           type="text"
           placeholder="Product Name"

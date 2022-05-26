@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 const User = ({ user, index }) => {
   const { email, role } = user;
   const makeAdmin = () => {
-    fetch(`http://localhost:5000/user/admin/${email}`, {
+    fetch(`https://young-wave-22909.herokuapp.com/user/admin/${email}`, {
       method: "PUT",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -18,7 +18,6 @@ const User = ({ user, index }) => {
       })
       .then((data) => {
         if (data.modifiedCount > 0) {
-          
           toast.success(`Successfully made an admin`);
         }
       });

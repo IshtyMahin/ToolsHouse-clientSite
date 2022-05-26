@@ -3,14 +3,13 @@ import { useQuery } from "react-query";
 import Loading from "../Shared/Loading";
 import OneReview from "./OneReview";
 
-
 const Review = () => {
   const {
     data: reviews,
     isLoading,
     refetch,
   } = useQuery("doctors", () =>
-    fetch("http://localhost:5000/review", {
+    fetch("https://young-wave-22909.herokuapp.com/review", {
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
@@ -19,15 +18,17 @@ const Review = () => {
   if (isLoading) {
     return <Loading></Loading>;
   }
-  return (<div className="grid grid-cols-1 lg:grid-cols-4 gap-3 mx-12">
-    {
-      reviews.slice(0,6).map(review=> <OneReview 
-         review={review}
-         key={review._id}
-      ></OneReview>)
-    }
-
-  </div>
+  return (
+    <div>
+      <h2 className="text-5xl text-red-400 text-center my-12">
+        Customers Review
+      </h2>
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-3 mx-12">
+        {reviews.slice(0, 6).map((review) => (
+          <OneReview review={review} key={review._id}></OneReview>
+        ))}
+      </div>
+    </div>
   );
 };
 
