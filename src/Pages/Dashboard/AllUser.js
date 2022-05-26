@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useQuery } from "react-query";
-import Loading from "../Shared/Loading";
+
 import User from "./User";
 
 const AllUser = () => {
@@ -29,8 +28,8 @@ const AllUser = () => {
             <tr>
               <th></th>
               <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
+              <th>Make Admin</th>
+              <th>Delete User</th>
             </tr>
           </thead>
           <tbody>

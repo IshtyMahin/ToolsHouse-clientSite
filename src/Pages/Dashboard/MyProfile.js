@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { useQuery } from "react-query";
-import { Link } from "react-router-dom";
+
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 import Loading from "../Shared/Loading";
@@ -36,6 +36,7 @@ const MyProfile = () => {
       education: data.education,
 
       phone: data.phone,
+      
     };
     console.log(userInfo);
     const url = `https://young-wave-22909.herokuapp.com/user/${user.email}`;
