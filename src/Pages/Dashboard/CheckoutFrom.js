@@ -12,7 +12,7 @@ const CheckoutForm = ({ item }) => {
   const { _id, price, productName, customerName } = item;
 
   useEffect(() => {
-    fetch("https://young-wave-22909.herokuapp.comcreate-payment-intent", {
+    fetch("https://young-wave-22909.herokuapp.com/create-payment-intent", {
       method: "POST",
       headers: {
         "content-type": "application/json",
